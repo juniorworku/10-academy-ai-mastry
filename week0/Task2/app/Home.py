@@ -2,28 +2,33 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-
-# Load Data
+import plotly.express as plt
 
 
 # Title
 st.title("MoonLight Energy Solutions Dashboard")
 
-@st.cache
+@st.cache_data
 
-def load_data():
-    data =pd.read_csv('Benin.csv')
+def load_data(path:str):
+    data =pd.read_csv(path)
     return data
 
-data = load_data()
+with st.sidebar:
+    st.header("Configuration")
+    uploaded_file = st.file_uploader("choose a file", type=["csv","xlsx"])
 
-# Title and introduction
-st.title('Solar Installation Potential Dashboard')
-st.write('Explore regions with high potential for solar installation and monitor operational efficiency.')
+    if uploaded_file is None:
+        st.info("Please select a file to upload through config")
+        st.stop()
 
-# Solar Radiation Analysis
-st.header('Solar Radiation Analysis')
-selected_month = st.selectbox('Select Month', data['month'].unique())
-month_data = data[data['month'] == selected_month]
-st.line_chart(month_data[['GHI', 'DNI', 'DHI']])
+df = load_data(uploaded_file)
+
+col1, col2, col3 = st.columns([1,1,1])
+
+with col1.expander("solar radiation measurements Data"):
+    st.write(
+        df, column_config={"Timestamp": st.column_config.NumberColumn(format="%d")},
+        )
+
+    
