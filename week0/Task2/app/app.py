@@ -6,9 +6,9 @@ import seaborn as sns
 
 
 def load_data():
-    data_benin = pd.read_csv('/week0/Task2/data/Benin_Malanville_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
-    data_sierra = pd.read_csv('/week0/Task2/data/Sierra_Leone_Bumbuna_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
-    data_togo = pd.read_csv('/week0/Task2/data/Togo_Dapaong_Qc_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
+    data_benin = pd.read_csv('/home/ted/Desktop/10 Academy Artificial Intelligence Mastery/week0/Task2/data/Benin_Malanville_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
+    data_sierra = pd.read_csv('/home/ted/Desktop/10 Academy Artificial Intelligence Mastery/week0/Task2/data/Sierra_Leone_Bumbuna_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
+    data_togo = pd.read_csv('/home/ted/Desktop/10 Academy Artificial Intelligence Mastery/week0/Task2/data/Togo_Dapaong_Qc_monthly.csv', parse_dates=['Timestamp'], index_col='Timestamp')
     return data_benin, data_sierra, data_togo
 
 data_benin, data_sierra, data_togo = load_data()
